@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find and book your favourite sports grounds with GroundBook.">
+  <title>GroundBook | Find Your Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="GroundBook home">
+      <span class="brand-mark">G<span>+</span></span>
+      <span>GROUND<span class="brand-accent">BOOK</span></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="main-nav" id="mainNav">
+      <a class="active" href="#home">Home</a>
+      <a href="#grounds">Explore grounds</a>
+      <a href="#how">How it works</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="header-actions">
+       <button class="login-btn" id="loginBtn">Log in</button>
+       <button class="login-btn" id="signupBtn">Sign up</button>
+       <a class="btn btn-small btn-dark" href="#grounds">Book a ground <span>↗</span></a>
+    </div>
+  </header>
+  <div class="auth-modal" id="authModal" hidden>
+  <div class="auth-box">
+    <button class="auth-close" id="closeAuthBtn" type="button">&times;</button>
+
+    <h2 id="authTitle">Welcome Back!</h2>
+    <p id="authMessage">Log in to your GroundBook account.</p>
+
+    <!-- Login Form -->
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Email address" required>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+      <button type="submit">Log in</button>
+      <p>New to GroundBook?
+        <button type="button" id="showSignupBtn">Create account</button>
+      </p>
+    </form>
+
+    <!-- Signup Form -->
+    <form id="signupForm" hidden>
+      <input type="text" id="signupName" placeholder="Full name" required>
+      <input type="email" id="signupEmail" placeholder="Email address" required>
+      <input type="password" id="signupPassword" placeholder="Password (minimum 8 characters)" minlength="8" required>
+      <button type="submit">Sign up</button>
+      <p>Already registered?
+        <button type="button" id="showLoginBtn">Log in</button>
+      </p>
+    </form>
+
+     <p id="authError"></p>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="eyebrow"><span class="live-dot"></span> YOUR GAME. YOUR GROUND. YOUR TIME.</div>
+        <h1>Find your game.<br><span>Own the field.</span></h1>
+        <p class="hero-copy">Discover great sports spaces around you and book your next match in just a few clicks.</p>
+        <div class="hero-buttons">
+          <a class="btn btn-orange" href="#grounds">Explore grounds <span>→</span></a>
+          <a class="text-link" href="#how">See how it works <span>↗</span></a>
+        </div>
+        <div class="hero-proof">
+          <div class="avatar-stack"><span>R</span><span>A</span><span>K</span><span>+</span></div>
+          <div><strong>Ready when you are</strong><small>Find a slot. Bring your squad.</small></div>
+        </div>
+      </div>
+      <div class="hero-sticker"><span>PLAY</span><strong>MORE.</strong><i>WORRY LESS ↗</i></div>
+      <div class="hero-bottom-note"><span>01 / 04</span><span>LET'S GET IN THE GAME</span></div>
+    </section>
+
+    <section class="search-wrap" aria-label="Search sports grounds">
+      <div class="search-intro"><span class="section-kicker">MAKE YOUR MOVE</span><h2>Find your <em>playground.</em></h2></div>
+      <form class="search-panel" id="searchForm">
+        <label class="search-field"><span class="field-icon">⌖</span><span class="field-content"><small>LOCATION</small><input id="locationInput" type="text" placeholder="City or area"></span></label>
+        <label class="search-field"><span class="field-icon">⚽</span><span class="field-content"><small>SPORT</small><select id="sportInput"><option value="all">All sports</option><option value="Football">Football</option><option value="Cricket">Cricket</option><option value="Badminton">Badminton</option><option value="Basketball">Basketball</option></select></span></label>
+        <label class="search-field"><span class="field-icon">▦</span><span class="field-content"><small>DATE</small><input id="dateInput" type="date"></span></label>
+        <button class="btn btn-orange search-submit" type="submit">Search grounds <span>→</span></button>
+      </form>
+      <div class="search-hint" id="searchHint">Popular near you: <button data-quick="Football">Football</button><button data-quick="Cricket">Cricket</button><button data-quick="Badminton">Badminton</button></div>
+    </section>
+
+    <section class="grounds-section section-pad" id="grounds">
+      <div class="section-heading">
+        <div><span class="section-kicker">PICK YOUR PLAY</span><h2>Popular <em>grounds.</em></h2><p>Handpicked spaces for your next big game.</p></div>
+        <a class="view-all" href="#grounds">Explore all grounds <span>↗</span></a>
+      </div>
+      <div class="filter-row" id="filterRow">
+        <button class="filter-chip selected" data-filter="all">All grounds <span>04</span></button>
+        <button class="filter-chip" data-filter="Football">Football</button>
+        <button class="filter-chip" data-filter="Cricket">Cricket</button>
+        <button class="filter-chip" data-filter="Badminton">Badminton</button>
+        <button class="filter-chip" data-filter="Basketball">Basketball</button>
+      </div>
+      <div class="ground-grid" id="groundGrid">
+        <article class="ground-card" data-sport="Football" data-location="adyar chennai" data-ground-id="1">
+          <div class="ground-image image-football"><span class="image-tag">TOP PICK</span><button class="heart-btn" aria-label="Save Football Arena">♡</button></div>
+          <div class="ground-info"><div class="card-topline"><span class="sport-label">⚽ FOOTBALL</span><span class="rating">★ 4.9</span></div><h3>Urban Football Arena</h3><p class="location">⌖ Adyar, Chennai</p><div class="card-bottom"><div><strong>₹1,000</strong><small> / hour</small></div><button class="book-btn" data-ground="Urban Football Arena" data-ground-id="1">Book now <span>→</span></button></div></div>
+        </article>
+        <article class="ground-card" data-sport="Cricket" data-location="tambaram chennai" data-ground-id="2">
+          <div class="ground-image image-cricket"><span class="image-tag">POPULAR</span><button class="heart-btn" aria-label="Save Cricket Club">♡</button></div>
+          <div class="ground-info"><div class="card-topline"><span class="sport-label">🏏 CRICKET</span><span class="rating">★ 4.8</span></div><h3>Boundary Cricket Club</h3><p class="location">⌖ Tambaram, Chennai</p><div class="card-bottom"><div><strong>₹800</strong><small> / hour</small></div><button class="book-btn" data-ground="Boundary Cricket Club" data-ground-id="2">Book now <span>→</span></button></div></div>
+        </article>
+        <article class="ground-card" data-sport="Badminton" data-location="velachery chennai" data-ground-id="3">
+          <div class="ground-image image-badminton"><span class="image-tag">INDOOR</span><button class="heart-btn" aria-label="Save Smash Point">♡</button></div>
+          <div class="ground-info"><div class="card-topline"><span class="sport-label">🏸 BADMINTON</span><span class="rating">★ 4.7</span></div><h3>Smash Point Courts</h3><p class="location">⌖ Velachery, Chennai</p><div class="card-bottom"><div><strong>₹400</strong><small> / hour</small></div><button class="book-btn" data-ground="Smash Point Courts" data-ground-id="3">Book now <span>→</span></button></div></div>
+        </article>
+        <article class="ground-card" data-sport="Basketball" data-location="omr chennai" data-ground-id="4">
+          <div class="ground-image image-basketball"><span class="image-tag">OPEN AIR</span><button class="heart-btn" aria-label="Save Hoops Park">♡</button></div>
+          <div class="ground-info"><div class="card-topline"><span class="sport-label">🏀 BASKETBALL</span><span class="rating">★ 4.6</span></div><h3>Hoops Park</h3><p class="location">⌖ OMR, Chennai</p><div class="card-bottom"><div><strong>₹600</strong><small> / hour</small></div><button class="book-btn" data-ground="Hoops Park" data-ground-id="4">Book now <span>→</span></button></div></div>
+        </article>
+      </div>
+      <p class="empty-state" id="emptyState" hidden>No grounds match your search. Try another sport or location.</p>
+    </section>
+
+    <section class="banner-section" id="how">
+      <div class="banner-copy"><span class="section-kicker light-kicker">LESS SEARCHING. MORE PLAYING.</span><h2>Your next match<br>is <em>closer than you think.</em></h2><p>Skip the calls and endless messages. Find a ground, choose a time, and get your team together.</p><a class="btn btn-light" href="#grounds">Find a ground <span>→</span></a></div>
+      <div class="banner-art"><div class="ball">⚽</div><span class="scribble">GAME ON!</span><span class="banner-number">02</span></div>
+    </section>
+
+    <section class="steps-section section-pad" id="about">
+      <div class="section-heading centered"><div><span class="section-kicker">THREE STEPS. ONE GREAT GAME.</span><h2>Booking made <em>easy.</em></h2></div></div>
+      <div class="steps-grid">
+        <div class="step"><span class="step-number">01</span><div class="step-icon">⌕</div><h3>Find a ground</h3><p>Explore sports venues and choose the one that fits your game.</p></div>
+        <div class="step"><span class="step-number">02</span><div class="step-icon">▦</div><h3>Pick your slot</h3><p>Choose your preferred date and time from the available options.</p></div>
+        <div class="step"><span class="step-number">03</span><div class="step-icon">↗</div><h3>Get ready to play</h3><p>Confirm your booking and bring your team to the field.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><a class="brand footer-brand" href="#"><span class="brand-mark">G<span>+</span></span><span>GROUND<span class="brand-accent">BOOK</span></span></a><p>Find your game. Own the field.</p><span class="copyright">© 2026 GroundBook. Built for the love of sport.</span></footer>
+
+  <dialog class="booking-modal" id="bookingModal">
+    <form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Close">×</button></form>
+    <span class="section-kicker">LET'S LOCK IT IN</span>
+    <h2>Book your <em>ground.</em></h2>
+    <p class="modal-ground" id="modalGround">Selected ground</p>
+    <form id="bookingForm">
+      <label>Your name<input id="customerName" type="text" placeholder="Enter your name" required></label>
+      <label>Booking date<input id="bookingDate" type="date" required></label>
+      <label>Choose a time slot<select id="timeSlot" required><option value="">Select a slot</option><option>06:00 AM – 07:00 AM</option><option>07:00 AM – 08:00 AM</option><option>08:00 AM – 09:00 AM</option><option>05:00 PM – 06:00 PM</option><option>06:00 PM – 07:00 PM</option><option>07:00 PM – 08:00 PM</option></select></label>
+      <button class="btn btn-orange modal-submit" type="submit">Confirm booking <span>→</span></button>
+      <small class="demo-note">Your booking will be saved securely in the local project database.</small>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
