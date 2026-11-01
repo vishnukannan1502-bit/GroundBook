@@ -1,5 +1,4 @@
 # ⚽ GroundBook – Sports Ground Booking System
-
 GroundBook is a web application that allows users to find sports grounds, check availability, and book grounds for their preferred date and time.
 
 ## Features
